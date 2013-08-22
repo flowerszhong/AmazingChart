@@ -10,7 +10,7 @@
 // var d3 = require("d3");
 // var $ = require("jquery");
 var $ = window.$,
-	 d3 = d3;
+	 d3 = window.d3;
 
 var __defaults = {
 	margin : [5,5,40,40],//top,right,bottom,left
@@ -30,10 +30,20 @@ var chart = function (el) {
 };
 
 chart.prototype = {
+	_x_scale : null,
+	_y_scale : null,
+	_x_extent : null,
+	_y_extent : null,
+	_x_domain : null,
+	_y_domain : null,
+	_x_axis: null,
+	_y_axis : null,
+	_x_axis_node : null,
+	_y_axis_node : null,
 	init : function () {
 		var $el = this.$el,
 			width = $el.width(),
-			height = $el.height;
+			height = $el.height();
 
 		this._layoutSize = {
 			w : width,
@@ -47,7 +57,21 @@ chart.prototype = {
 		this.initLayout();
 	},
 	initLayout : function () {
-		
+		this.drawAxes();
+	},
+	drawAxes : function () {
+		var _axes = __defaults.axes;
+		var i = 0,
+			length = _axes.length;
+		for(;i < length; i++){
+			this.renderAxis([_axes[i]]);
+		}
+	},
+	renderAxis : function (config) {
+		var scale;
+		if(config.type == "linear"){
+
+		}
 	}
 }
 
