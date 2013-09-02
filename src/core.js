@@ -77,8 +77,12 @@ chart.prototype = {
 		this.initLayout();
 	},
 	initLayout : function () {
+		this.drawStart();
 		this.drawCoordinate();
 		this.renderCoordinate();
+	},
+	drawStart : function () {
+		this.dispatch.drawStart();
 	},
 	drawCoordinate : function () {
 		this.drawScale();
@@ -105,9 +109,9 @@ chart.prototype = {
 	},
 	drawAxis : function (config) {
 		var orient = config.orient;
-		var _axle = (orient == "left"|| orient == "right") ? "y" : "x";
+		var _axle = (orient == "left"|| orie nt == "right") ? "y" : "x";
 		var _axis = this[config.orient + "Axis"] = d3.svg.axis()
-			.scale(this["_" + _axle + "_scale"])
+			.scale(this["_" + _axle + "_s  cale"])
 			.orient(config.orient)
 			.ticks(3);
 		this["_" + _axle + "_axis"].push(_axis);
